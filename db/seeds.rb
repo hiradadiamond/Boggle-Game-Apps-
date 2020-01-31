@@ -5,3 +5,31 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# class Seed
+# attr_reader :seed
+# def initialize
+#   @seed
+# end
+#
+# def run
+#   generate_data
+# end
+#
+# def generate_data
+#   10.times do
+#     gamecontents = GameContent.new
+#     gamecontents.user = "hira"
+#     gamecontents.scores = 10
+#     gamecontents.puzzle = "qwertyuioplkjhgf"
+#     gamecontents.name = "".save!
+#     puts "Generated  gamecontents  # #{gamecontents.user}"
+#   end
+# end
+# end
+#
+# seed = Seed.new
+# seed.run
+
+  gamecontents = GameContent.create([{ user: '', scores:0, puzzle:'qwertyuioplkjhgf' }])
+
+#   Character.create(name: 'Luke', movie: movies.first)

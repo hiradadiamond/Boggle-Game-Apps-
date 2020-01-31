@@ -24,26 +24,31 @@ class GameContainer extends Component {
   fetchLetters = () => {
     // return fetch(BASE_URL + "/rounds/new")
 
-    return fetch('https://boggle-backend.herokuapp.com/rounds/new')
+    return fetch('http://localhost:3000/api/v1/boggle.json')
       .then(res => res.json())
   }
+  //
+  // startGame = () => {
+  //   this.fetchLetters()
+  //     .then(json => this.setState({
+  //       letters: json.setup,
+  //       isGameStarted: true,
+  //       gameHasEnded: false,
+  //       timer: 60,
+  //       words: [],
+  //       score: 0
+  //     }, () =>  {
+  //       document.getElementById("poop").focus()
+  //       this.createTimerInterval()
+  //     }
+  //   ))
+  // }
 
-  startGame = () => {
-    this.fetchLetters()
-      .then(json => this.setState({
-        letters: json.setup,
-        isGameStarted: true,
-        gameHasEnded: false,
-        timer: 60,
-        words: [],
-        score: 0
-      }, () =>  {
-        document.getElementById("poop").focus()
-        this.createTimerInterval()
-      }
-    ))
-  }
 
+   startGame=()=>{
+     console.log('hira hello priya')
+
+   }
   endGame = () => {
     clearInterval(this.state.intervalId)
     this.setState({ isGameStarted: false, gameHasEnded: true })
