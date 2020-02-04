@@ -13,13 +13,9 @@ const Timer = ({ timer }) => {
   }
 
   return(
-    <div className="boggle-timer">
-      <div id="hour-glass">
-        <div id="glass"></div>
-        <div id="sand-stream"></div>
-        <div id="top-sand"></div>
-        <div id="bottom-sand"></div>
-      </div>
+    <div className="boggle-timer ">
+       <button className="btn btn-lg start-button"> Time Left is:{minute()} minutes and {second()} seconds</button>
     </div>
   )
 }
+export default Timer

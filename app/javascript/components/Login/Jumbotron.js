@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import TextField from '@material-ui/core/TextField'
  import styled from 'styled-components'
-import game from './game.png'
+import game from '../../../assets/images/game.png'
 import { Route } from 'react-router-dom'
-// import './Jumbotron.css'
+
 
 
 const Section = styled.section`

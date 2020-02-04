@@ -3,8 +3,6 @@ import GameContainer from './GameContainer'
 import styled from 'styled-components'
 
 
-
-
 const Play = () =>{
   return(
   <div> this is player body

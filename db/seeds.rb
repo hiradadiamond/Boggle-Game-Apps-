@@ -1,35 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-# class Seed
-# attr_reader :seed
-# def initialize
-#   @seed
-# end
-#
-# def run
-#   generate_data
-# end
-#
-# def generate_data
-#   10.times do
-#     gamecontents = GameContent.new
-#     gamecontents.user = "hira"
-#     gamecontents.scores = 10
-#     gamecontents.puzzle = "qwertyuioplkjhgf"
-#     gamecontents.name = "".save!
-#     puts "Generated  gamecontents  # #{gamecontents.user}"
-#   end
-# end
-# end
-#
-# seed = Seed.new
-# seed.run
+def randompuzzle
+ return[*('A'..'Z')].sample(16).join
+end
 
-  gamecontents = GameContent.create([{ user: '', scores:0, puzzle:'qwertyuioplkjhgf' }])
+x= randompuzzle
 
-#   Character.create(name: 'Luke', movie: movies.first)
+
+ GameContent.create([{ user: '', scores:0, puzzle:'esggmicbanzeetek', validwords:'ant, eat,nice, ice, mice, man, sim,mat,mint,net,size'}])
+ GameContent.create([{ user: '', scores:0, puzzle:'keteeznaecimggse', validwords:'ice, aim, mice, sim, ant,eat,name,neat,ken,tea,egg,net'}])
+ GameContent.create([{ user: '', scores:0, puzzle:'avamusufnklsarei', validwords:'are, fuse,mask'}])
+ GameContent.create([{ user: '', scores:0, puzzle:'cergeisbbtmcbont', validwords:'bet,bit,sim,mice, ice, see, bot, not'}])
+ GameContent.create([{ user: '', scores:0, puzzle:'einsyrtolshcriyp', validwords:'slip,not,try,hot, his'}])
+ GameContent.create([{ user: '', scores:0, puzzle:'heptvsleithtrnac', validwords:'cat,hat,act,sit,pet,ant,help'}])
+ GameContent.create([{ user: '', scores:0, puzzle:'erbfefoverrasats', validwords:'free,rat,sat, art,ear'}])
+ GameContent.create([{ user: '', scores:0, puzzle:'fblprieagmndhtsv', validwords:'grin, mind, pea, lean, mine, lean'}])

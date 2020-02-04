@@ -6,14 +6,15 @@ import Timer from './Timer.js'
 import StartButton from './StartButton.js'
 import GameEndPopUp from './GameEndPopUp.js'
 
-//const BASE_URL = "https://boggle-backend.herokuapp.com"
-const BASE_URL = "https://boggle-backend.herokuapp.com"
+
+const BASE_URL = "http://localhost:3000/"
 
 
 class GameContainer extends Component {
 
   state = {
     words: [],
+    validwords:'',
     score: 0,
     timer: 60,
     letters: '                ',
@@ -22,31 +23,28 @@ class GameContainer extends Component {
   }
 
   fetchLetters = () => {
-    // return fetch(BASE_URL + "/rounds/new")
+     var x= Math.floor(Math.random() * (7) + 1)
+     return fetch(BASE_URL + "/api/v1/boggle/" + x )
+     .then(res => res.json())
 
-    return fetch('http://localhost:3000/api/v1/boggle.json')
-      .then(res => res.json())
   }
-  //
-  // startGame = () => {
-  //   this.fetchLetters()
-  //     .then(json => this.setState({
-  //       letters: json.setup,
-  //       isGameStarted: true,
-  //       gameHasEnded: false,
-  //       timer: 60,
-  //       words: [],
-  //       score: 0
-  //     }, () =>  {
-  //       document.getElementById("poop").focus()
-  //       this.createTimerInterval()
-  //     }
-  //   ))
-  // }
 
-
-   startGame=()=>{
+ startGame=()=>{
      console.log('hira hello priya')
+     this.fetchLetters()
+     .then(json=>this.setState({
+         letters: json.puzzle,
+         isGameStarted: true,
+         gameHasEnded:false,
+         timer:60,
+         words:[],
+         validwords:json.validwords,
+         scores:0
+     },()=>{
+       document.getElementById("poop").focus()
+       this.createTimerInterval()
+     }
+   ))
 
    }
   endGame = () => {
@@ -60,16 +58,6 @@ class GameContainer extends Component {
     data.score = this.state.score
     data.name = name
     this.postGameInfo(data)
-  }
-
-  postGameInfo = (data) => {
-    fetch(BASE_URL + "/rounds", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
   }
 
 
@@ -109,19 +97,9 @@ class GameContainer extends Component {
   }
 
   checkWordExists = (word) => {
-    fetch(BASE_URL + "/rounds/checkword", {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ "word": word})
-    })
-      .then(res => res.json())
-      .then(json => {
-        console.log(json)
-        json ? this.addWord(word) : false
-      })
+    if(this.state.validwords.includes(word)){
+     this.addWord(word)
+    }
   }
 
   addWord = (word) => {
@@ -132,7 +110,7 @@ class GameContainer extends Component {
 
   scoreWords  = (wordArray) => {
     return wordArray.reduce((score, currentWord) => {
-      return score += (currentWord.length - 2)
+      return score += (currentWord.length)
     }, 0)
   }
 
@@ -140,7 +118,7 @@ class GameContainer extends Component {
     return(
       <div>
         <div className="game-container-grid">
-          {this.state.isGameStarted ? <Timer timer={this.props.timer} /> : null}
+           {this.state.isGameStarted ? <Timer timer={this.state.timer} /> : null}
           <Board letters={this.state.letters} />
           <WordList words={this.state.words} />
           <Footer handleWord={this.handleWord} letters={this.state.letters} words={this.state.words} score={this.state.score} isGameStarted={this.state.isGameStarted}/>

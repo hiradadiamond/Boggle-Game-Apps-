@@ -12,7 +12,6 @@ class Login extends Component{
     <Switch>
       <Route exact path='/' component={Jumbotron} />
       <Route exact path="/game/:slug" component={GameContainer} />
-
     </Switch>
     </BrowserRouter>
 
